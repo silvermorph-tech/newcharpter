@@ -1,0 +1,163 @@
+import React from 'react';
+import { useApp } from '../context/AppContext';
+import { ArrowUpRight } from 'lucide-react';
+
+export const Footer: React.FC = () => {
+  const { language, setActiveTab, scrollToSection } = useApp();
+  const isZh = language === 'zh-TW';
+
+  const navLinks = [
+    {
+      id: 'convictions',
+      label: isZh ? '核心投資理念' : 'Convictions',
+      action: () => scrollToSection('convictions'),
+    },
+    {
+      id: 'framework',
+      label: isZh ? '採用模型' : 'Adoption Model',
+      action: () => scrollToSection('framework'),
+    },
+    {
+      id: 'field-notes',
+      label: isZh ? '田野筆記' : 'Field Notes',
+      action: () => {
+        setActiveTab('field-notes');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      },
+    },
+    {
+      id: 'insights',
+      label: isZh ? '文章專欄' : 'Articles',
+      action: () => {
+        setActiveTab('insights');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      },
+    },
+    {
+      id: 'for-builders',
+      label: isZh ? '創業者賽道指南' : 'For Builders',
+      action: () => scrollToSection('for-builders'),
+    },
+    {
+      id: 'about',
+      label: isZh ? '合夥人與運營實體' : 'Team & Network',
+      action: () => scrollToSection('about'),
+    },
+    {
+      id: 'contact',
+      label: isZh ? '直接對話與合作' : 'Contact & Dialogue',
+      action: () => scrollToSection('contact'),
+    },
+  ];
+
+  return (
+    <footer id="main-footer" className="bg-[#141E18] text-[#F8F6F1] pt-16 pb-12 border-t border-[#223026]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+        {/* Top Grid - 4 Symmetrical Columns */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10">
+          {/* Col 1: Brand & Manifesto */}
+          <div className="space-y-4">
+            <div className="flex items-center">
+              <span className="font-serif text-xl tracking-tight text-[#F8F6F1]">
+                {isZh ? '啟航創投' : 'New Chapter Ventures'}
+              </span>
+            </div>
+
+            <p className="text-xs text-[#A2B4AA] leading-relaxed font-sans">
+              {isZh
+                ? '從真實照護現場出發，建立對下一代銀髮科技、照護服務與商業模式的長期投資判斷。'
+                : 'Care-grounded conviction for longevity and elderly care innovation. Connecting real frontline operations with scalable technology.'}
+            </p>
+          </div>
+
+          {/* Col 2: Platform Navigation */}
+          <div className="space-y-3.5">
+            <span className="text-[10px] font-mono uppercase tracking-[0.16em] text-[#788C80] block font-semibold">
+              {isZh ? '平台導覽' : 'Platform Navigation'}
+            </span>
+            <ul className="space-y-2.5 text-xs font-sans text-[#B8C8BF]">
+              {navLinks.map((item) => (
+                <li key={item.id}>
+                  <button
+                    onClick={item.action}
+                    className="hover:text-[#FAF8F5] cursor-pointer text-left py-0.5 block hover:translate-x-1 transition-[color,transform] duration-200"
+                  >
+                    {item.label}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Col 3: Focus & Builders Links */}
+          <div className="space-y-3.5">
+            <span className="text-[10px] font-mono uppercase tracking-[0.16em] text-[#788C80] block font-semibold">
+              {isZh ? '創業者與合作' : 'Builders & Dialogue'}
+            </span>
+            <ul className="space-y-2.5 text-xs font-sans text-[#B8C8BF]">
+              <li>
+                <button
+                  onClick={() => scrollToSection('for-builders')}
+                  className="hover:text-[#FAF8F5] cursor-pointer text-left py-0.5 block hover:translate-x-1 transition-[color,transform] duration-200"
+                >
+                  {isZh ? '關注賽道' : 'Focus Sectors'}
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => scrollToSection('founder-traits')}
+                  className="hover:text-[#FAF8F5] cursor-pointer text-left py-0.5 block hover:translate-x-1 transition-[color,transform] duration-200"
+                >
+                  {isZh ? '創始人特質' : 'Founder Traits'}
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => scrollToSection('contact')}
+                  className="hover:text-[#FAF8F5] cursor-pointer text-left py-0.5 block hover:translate-x-1 transition-[color,transform] duration-200"
+                >
+                  {isZh ? '聯繫我們' : 'Contact Us'}
+                </button>
+              </li>
+            </ul>
+          </div>
+
+          {/* Col 4: Frontline Dialogue & Contact */}
+          <div className="space-y-3.5">
+            <span className="text-[10px] font-mono uppercase tracking-[0.16em] text-[#8EA094] block font-semibold">
+              {isZh ? '一線對話與合作' : 'Frontline Dialogue'}
+            </span>
+            <div className="space-y-3">
+              <button
+                onClick={() => scrollToSection('contact')}
+                className="tactile-btn w-full text-left py-2.5 ps-3.5 pe-3 rounded-xs bg-[#1E2E24] hover:bg-[#2A3E31] text-xs font-mono tracking-wider text-[#F8F6F1] flex items-center justify-between border border-[#2B3F32] cursor-pointer transition-[background-color,transform] duration-150 active:scale-[0.98]"
+              >
+                <span>{isZh ? '提交照護痛點或試點需求' : 'Submit Care Problem'}</span>
+                <ArrowUpRight className="w-3.5 h-3.5 text-[#A2B4AA]" strokeWidth={1.75} />
+              </button>
+
+              <div className="pt-2 text-[11px] text-[#8EA094] space-y-1">
+                <span className="block">{isZh ? '聯絡郵箱：' : 'Direct Email:'}</span>
+                <a
+                  href="mailto:kelly.yung@silvermorph.com"
+                  className="font-mono text-[#D0DDD5] hover:text-[#FAF8F5] hover:underline transition-colors block text-xs"
+                >
+                  kelly.yung@silvermorph.com
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom Line */}
+        <div className="pt-8 border-t border-[#1F2E24] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#788C80]">
+          <p>
+            {isZh
+              ? `© ${new Date().getFullYear()} 啟航創投 · 專注銀髮科技與照護創新的實踐平台`
+              : `© ${new Date().getFullYear()} New Chapter Ventures. Care-grounded conviction platform.`}
+          </p>
+        </div>
+      </div>
+    </footer>
+  );
+};

@@ -1,0 +1,8 @@
+{
+  "name": "new age chapter ",
+  "description": "啟航創投 (New Chapter Ventures) — Backing the next generation of companies for an aging world. An operator-led venture platform connecting real frontline care environments with builders of scalable ageing technologies.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
